@@ -12,3 +12,6 @@ env/
 # Sistema operativo
 .DS_Store
 Thumbs.db
+
+# Archivos temporales de prueba
+prueba.py

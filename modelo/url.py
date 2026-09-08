@@ -1,42 +1,50 @@
 """
-Clase URL: representa una dirección a analizar.
-Aquí se aplica el pilar de ENCAPSULACION mediante atributos
-privados y propiedades de solo lectura (@property).
+Clase URL: representa una direccion a analizar.
+Aplica ENCAPSULACION con atributos privados y propiedades.
+Valida la direccion al construirse y lanza URLInvalidaError
+si el formato no es correcto (MANEJO DE EXCEPCIONES).
 """
 from urllib.parse import urlparse
+from modelo.excepciones import URLInvalidaError
 
 
 class URL:
     def __init__(self, direccion):
-        # Atributo privado: no se accede directamente desde fuera.
-        self.__direccion = direccion.strip()
-        # Se descompone la URL una sola vez y se guarda.
+        # Validacion de entrada: operacion de riesgo protegida.
+        if not direccion or not isinstance(direccion, str):
+            raise URLInvalidaError("La URL esta vacia o no es texto")
+
+        direccion = direccion.strip()
+
+        if not direccion.startswith(("http://", "https://")):
+            raise URLInvalidaError(
+                "La URL debe comenzar con http:// o https://"
+            )
+
+        self.__direccion = direccion
         self.__partes = urlparse(self.__direccion)
 
-    # ---- ENCAPSULACION: propiedades de solo lectura ----
+        # Si tras el parseo no hay dominio, la URL es invalida.
+        if not self.__partes.netloc:
+            raise URLInvalidaError("La URL no contiene un dominio valido")
+
     @property
     def direccion(self):
-        """Devuelve la direccion completa de la URL."""
         return self.__direccion
 
     @property
     def dominio(self):
-        """Devuelve solo el dominio (netloc) de la URL."""
         return self.__partes.netloc
 
     @property
     def longitud(self):
-        """Devuelve la cantidad de caracteres de la URL."""
         return len(self.__direccion)
 
     @property
     def protocolo(self):
-        """Devuelve el esquema: http, https, etc."""
         return self.__partes.scheme
 
-    # ---- Metodos de apoyo que usaran las reglas ----
     def contar_subdominios(self):
-        """Cuenta los puntos del dominio como aproximacion a subdominios."""
         if not self.dominio:
             return 0
         return self.dominio.count(".")
