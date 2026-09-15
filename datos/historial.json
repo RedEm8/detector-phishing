@@ -64,5 +64,76 @@
             "Sin cifrado HTTPS (+15)"
         ],
         "fecha": "2026-09-08 19:35"
+    },
+    {
+        "url": "https://vacantes.bsc.com.do/",
+        "puntaje_total": 0,
+        "nivel_riesgo": "segura",
+        "senales": [],
+        "fecha": "2026-09-10 12:58"
+    },
+    {
+        "url": "http://192.168.0.1/banco/login",
+        "puntaje_total": 80,
+        "nivel_riesgo": "peligrosa",
+        "senales": [
+            "Uso de IP en lugar de dominio (+25)",
+            "Palabra clave sospechosa (+20)",
+            "Posible typosquatting (+20)",
+            "Sin cifrado HTTPS (+15)"
+        ],
+        "fecha": "2026-09-10 13:00"
+    },
+    {
+        "url": "http://192.168.0.1/banco/login",
+        "puntaje_total": 80,
+        "nivel_riesgo": "peligrosa",
+        "senales": [
+            "Uso de IP en lugar de dominio (+25)",
+            "Palabra clave sospechosa (+20)",
+            "Posible typosquatting (+20)",
+            "Sin cifrado HTTPS (+15)"
+        ],
+        "fecha": "2026-09-10 13:13"
+    },
+    {
+        "url": "http://192.168.0.1/banco/login",
+        "puntaje_total": 80,
+        "nivel_riesgo": "peligrosa",
+        "senales": [
+            "Uso de IP en lugar de dominio (+25)",
+            "Palabra clave sospechosa (+20)",
+            "Posible typosquatting (+20)",
+            "Sin cifrado HTTPS (+15)"
+        ],
+        "fecha": "2026-09-10 13:26"
+    },
+    {
+        "url": "https://plataformavirtual.infotepvirtual.com/login",
+        "puntaje_total": 20,
+        "nivel_riesgo": "segura",
+        "senales": [
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-14 22:17"
+    },
+    {
+        "url": "https://plataformavirtual.infotepvirtual.com/login/adm",
+        "puntaje_total": 20,
+        "nivel_riesgo": "segura",
+        "senales": [
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-14 22:17"
+    },
+    {
+        "url": "https://plataformavirtual.infotepvirtual.com/login/adm/contraseña",
+        "puntaje_total": 35,
+        "nivel_riesgo": "sospechosa",
+        "senales": [
+            "Longitud excesiva (+15)",
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-14 22:17"
     }
 ]
