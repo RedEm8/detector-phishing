@@ -39,3 +39,25 @@ class AnalizadorController:
     def obtener_historial(self):
         """Devuelve todos los analisis guardados."""
         return self._historial.obtener_todos()
+
+    def obtener_estadisticas(self):
+        """
+        Devuelve estadisticas agregadas del historial para las graficas:
+        - conteo por nivel de riesgo
+        - conteo de veces que se activo cada regla
+        """
+        analisis = self._historial.obtener_todos()
+
+        conteo_niveles = {"segura": 0, "sospechosa": 0, "peligrosa": 0}
+        conteo_reglas = {}
+
+        for a in analisis:
+            nivel = a.get("nivel_riesgo", "segura")
+            if nivel in conteo_niveles:
+                conteo_niveles[nivel] += 1
+
+            for senal in a.get("senales", []):
+                nombre = senal.split(" (+")[0]
+                conteo_reglas[nombre] = conteo_reglas.get(nombre, 0) + 1
+
+        return {"niveles": conteo_niveles, "reglas": conteo_reglas}
