@@ -10,6 +10,7 @@ from controlador.analizador_controller import AnalizadorController
 from modelo.excepciones import URLInvalidaError
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from vista.vista_bd import agregar_pestanas
 
 
 class VistaGrafica:
@@ -65,6 +66,8 @@ class VistaGrafica:
         self._notebook.add(self._tab_historial, text="  Historial  ")
         self._notebook.add(self._tab_estadisticas, text="  Estadisticas  ")
         self._notebook.pack(fill="both", expand=True, padx=10, pady=10)
+
+        agregar_pestanas(self._notebook) 
 
         self._construir_tab_analisis()
         self._construir_tab_historial()
