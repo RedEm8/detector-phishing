@@ -10,6 +10,7 @@ from modelo.historial import Historial
 from modelo.excepciones import URLInvalidaError
 from modelo.reglas import (ReglaLongitud, ReglaIP, ReglaPalabrasClave,
                            ReglaTyposquatting, ReglaProtocolo)
+from datos.virustotal_api import verificar_url, ErrorVirusTotal
 
 
 class AnalizadorController:
@@ -31,9 +32,17 @@ class AnalizadorController:
         Devuelve el objeto Resultado. Lanza URLInvalidaError
         si la direccion no es valida (la vista lo maneja).
         """
-        url = URL(direccion)               # puede lanzar URLInvalidaError
+        url = URL(direccion)                     # puede lanzar URLInvalidaError
         resultado = self._motor.analizar(url)
-        self._historial.agregar(resultado)  # se guarda automaticamente
+
+        # --- Verificacion externa con VirusTotal (no bloqueante) ---
+        try:
+            externo = verificar_url(direccion)
+            resultado.veredicto_externo = externo["veredicto"]
+        except ErrorVirusTotal:
+            resultado.veredicto_externo = "No disponible"  # si VT falla, el analisis local sigue
+
+        self._historial.agregar(resultado)       # se guarda automaticamente
         return resultado
 
     def obtener_historial(self):

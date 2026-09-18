@@ -166,5 +166,110 @@
             "Sin cifrado HTTPS (+15)"
         ],
         "fecha": "2026-09-14 22:47"
+    },
+    {
+        "url": "https://fast.com/es/@@/",
+        "puntaje_total": 0,
+        "nivel_riesgo": "segura",
+        "senales": [],
+        "fecha": "2026-09-17 12:21"
+    },
+    {
+        "url": "https://fast.com/es/@@/login",
+        "puntaje_total": 20,
+        "nivel_riesgo": "segura",
+        "senales": [
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-17 12:21"
+    },
+    {
+        "url": "https://fast.com/es/@@/login/adm",
+        "puntaje_total": 20,
+        "nivel_riesgo": "segura",
+        "senales": [
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-17 12:21"
+    },
+    {
+        "url": "https://fast.com/es/@@/login/adm.@@",
+        "puntaje_total": 20,
+        "nivel_riesgo": "segura",
+        "senales": [
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-17 12:21"
+    },
+    {
+        "url": "https://fast.com/es/@@/login/adm.@@adfadfa",
+        "puntaje_total": 20,
+        "nivel_riesgo": "segura",
+        "senales": [
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-17 12:21"
+    },
+    {
+        "url": "https://fast.com/es/@@/login/adm.@@adfadfaasdfadfadfagaedfhadfbe",
+        "puntaje_total": 35,
+        "nivel_riesgo": "sospechosa",
+        "senales": [
+            "Longitud excesiva (+15)",
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-17 12:21"
+    },
+    {
+        "url": "https://fast.com/es/@@/login/adm.@@adfadfaasdfadfadfagaedfhadfbegfnsgnahfag",
+        "puntaje_total": 35,
+        "nivel_riesgo": "sospechosa",
+        "senales": [
+            "Longitud excesiva (+15)",
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-17 12:21"
+    },
+    {
+        "url": "https://fast.com/es/@@/login/adm.@@adfadfaasdfadfadfagaedfhadfbegfnsgnahfagSFCVBZ ZF",
+        "puntaje_total": 35,
+        "nivel_riesgo": "sospechosa",
+        "senales": [
+            "Longitud excesiva (+15)",
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-17 12:21"
+    },
+    {
+        "url": "https://auth.netacad.com/auth/realms/skillsforall/login-actions/authenticate?client_id=b2e-marketplace&tab_id=ErEpPyoYjpM&client_data=eyJydSI6Imh0dHBzOi8vd3d3Lm5ldGFjYWQuY29tL2xhdW5jaD9pZD1lM2E4YTFhNC02MjNiLTRjMTQtYmJhYi0yMTg4ZGEyZDk0ZDcmdGFiPWN1cnJpY3VsdW0mdmlldz1jMjU3YzM2Ni03YjM2LTU2NGUtYWFmYi05ZGY0YmE3OTRiYzkiLCJydCI6ImNvZGUiLCJybSI6ImZyYWdtZW50Iiwic3QiOiIyNWUxODUyZC1kMDczLTRiOWMtOGMzMS1mYWE5YThiNmQ2N2UifQ&execution=544c98b5-6b03-41d5-b104-b625ecff8ce5&kc_locale=en",
+        "puntaje_total": 35,
+        "nivel_riesgo": "sospechosa",
+        "veredicto_externo": "No analizada",
+        "senales": [
+            "Longitud excesiva (+15)",
+            "Palabra clave sospechosa (+20)"
+        ],
+        "fecha": "2026-09-18 10:59"
+    },
+    {
+        "url": "https://www.google.com",
+        "puntaje_total": 0,
+        "nivel_riesgo": "segura",
+        "veredicto_externo": "Limpio",
+        "senales": [],
+        "fecha": "2026-09-18 11:14"
+    },
+    {
+        "url": "http://192.168.0.1/login-verify-banco",
+        "puntaje_total": 80,
+        "nivel_riesgo": "peligrosa",
+        "veredicto_externo": "No analizada",
+        "senales": [
+            "Uso de IP en lugar de dominio (+25)",
+            "Palabra clave sospechosa (+20)",
+            "Posible typosquatting (+20)",
+            "Sin cifrado HTTPS (+15)"
+        ],
+        "fecha": "2026-09-18 11:14"
     }
 ]

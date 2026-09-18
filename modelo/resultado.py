@@ -1,7 +1,8 @@
 """
 Clase Resultado: representa el veredicto de un analisis de URL.
 Aplica ENCAPSULACION con atributos privados, propiedades de solo
-lectura y una propiedad con validacion (setter) para el nivel de riesgo.
+lectura y propiedades con validacion (setter) para el nivel de riesgo
+y el veredicto externo (VirusTotal).
 """
 from datetime import datetime
 
@@ -15,6 +16,7 @@ class Resultado:
         self.__puntaje_total = puntaje_total  # suma de pesos de las reglas
         self.__senales = []                   # lista de reglas que se activaron
         self.__nivel_riesgo = "segura"        # valor inicial por defecto
+        self.__veredicto_externo = "No consultado"  # resultado de VirusTotal
         self.__fecha = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     # ---- ENCAPSULACION: propiedades de solo lectura ----
@@ -49,6 +51,16 @@ class Resultado:
             )
         self.__nivel_riesgo = valor
 
+    # ---- Veredicto externo (VirusTotal) ----
+    @property
+    def veredicto_externo(self):
+        return self.__veredicto_externo
+
+    @veredicto_externo.setter
+    def veredicto_externo(self, valor):
+        # Se guarda como texto; si llega vacio, queda "No consultado".
+        self.__veredicto_externo = str(valor) if valor else "No consultado"
+
     # ---- Metodos de apoyo ----
     def agregar_senal(self, descripcion):
         """Registra una senal (motivo) detectada durante el analisis."""
@@ -60,6 +72,7 @@ class Resultado:
             "url": self.__url,
             "puntaje_total": self.__puntaje_total,
             "nivel_riesgo": self.__nivel_riesgo,
+            "veredicto_externo": self.__veredicto_externo,
             "senales": self.__senales,
             "fecha": self.__fecha,
         }

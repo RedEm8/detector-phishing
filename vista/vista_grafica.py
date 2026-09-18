@@ -28,6 +28,16 @@ class VistaGrafica:
         "peligrosa": "#C0392B",   # rojo
     }
 
+    # Colores por veredicto de VirusTotal
+    COLORES_VT = {
+        "Malicioso": "#C0392B",
+        "Sospechoso": "#E0A93B",
+        "Limpio": "#27AE60",
+        "No analizada": "#888888",
+        "No disponible": "#888888",
+        "No consultado": "#888888",
+    }
+
     def __init__(self):
         self._ctrl = AnalizadorController()
 
@@ -67,7 +77,7 @@ class VistaGrafica:
         self._notebook.add(self._tab_estadisticas, text="  Estadisticas  ")
         self._notebook.pack(fill="both", expand=True, padx=10, pady=10)
 
-        agregar_pestanas(self._notebook) 
+        agregar_pestanas(self._notebook)
 
         self._construir_tab_analisis()
         self._construir_tab_historial()
@@ -154,6 +164,13 @@ class VistaGrafica:
                  fg=self.COLOR_TEXTO, anchor="w", wraplength=700,
                  justify="left").pack(fill="x")
 
+        # --- Veredicto externo (VirusTotal) ---
+        color_vt = self.COLORES_VT.get(resultado.veredicto_externo, "#DDDDDD")
+        tk.Label(self._frame_resultado,
+                 text=f"VirusTotal: {resultado.veredicto_externo}",
+                 font=("Segoe UI", 10, "bold"), bg=self.COLOR_PANEL,
+                 fg=color_vt, anchor="w").pack(fill="x", pady=(6, 0))
+
         if resultado.senales:
             tk.Label(self._frame_resultado, text="Senales detectadas:",
                      font=("Segoe UI", 10, "bold"), bg=self.COLOR_PANEL,
@@ -193,11 +210,12 @@ class VistaGrafica:
                   bg=self.COLOR_ACENTO, fg=self.COLOR_TEXTO, relief="flat",
                   cursor="hand2", command=self._cargar_tabla).pack(side="right")
 
-        columnas = ("url", "nivel", "puntaje", "fecha")
+        columnas = ("url", "nivel", "externo", "puntaje", "fecha")
         self._tabla = ttk.Treeview(cont, columns=columnas, show="headings", height=12)
 
-        encabezados = {"url": "URL", "nivel": "Nivel", "puntaje": "Puntaje", "fecha": "Fecha"}
-        anchos = {"url": 340, "nivel": 110, "puntaje": 80, "fecha": 130}
+        encabezados = {"url": "URL", "nivel": "Nivel", "externo": "VirusTotal",
+                       "puntaje": "Puntaje", "fecha": "Fecha"}
+        anchos = {"url": 300, "nivel": 100, "externo": 100, "puntaje": 70, "fecha": 120}
         for col in columnas:
             self._tabla.heading(col, text=encabezados[col],
                                 command=lambda c=col: self._ordenar_tabla(c, False))
@@ -224,6 +242,7 @@ class VistaGrafica:
                 continue
             self._tabla.insert("", "end", values=(
                 a["url"], a["nivel_riesgo"].upper(),
+                a.get("veredicto_externo", "-"),
                 a["puntaje_total"], a["fecha"]
             ))
 
